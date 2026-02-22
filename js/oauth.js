@@ -61,6 +61,25 @@ app.get('/api/oauth/callback', async (req, res) => {
 
     const accessToken = tokenData.access_token;
 
+    // Verificar usuario autorizado
+    const userResponse = await fetch('https://api.github.com/user', {
+      headers: {
+        'Authorization': `token ${accessToken}`,
+        'User-Agent': 'IBHO-CMS'
+      }
+    });
+
+    if (!userResponse.ok) {
+      return res.status(500).send('Error al verificar usuario');
+    }
+
+    const userData = await userResponse.json();
+    const allowedUsers = process.env.GITHUB_ALLOWED_USERS ? process.env.GITHUB_ALLOWED_USERS.split(',').map(u => u.trim()) : [];
+
+    if (allowedUsers.length > 0 && !allowedUsers.includes(userData.login)) {
+      return res.status(403).send('Acceso denegado: Usuario no autorizado para editar el sitio');
+    }
+
     // Página HTML que envía el token a Decap CMS via postMessage
     const html = `
       <!DOCTYPE html>
