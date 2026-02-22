@@ -1,0 +1,64 @@
+backend:
+  name: test-repo
+  # Para desarrollo local, cambia a:
+  # name: proxy
+  # proxy_url: http://localhost:8081/api/v1
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+locale: 'es'
+
+collections:
+  - name: "config"
+    label: "Configuración General"
+    files:
+      - file: "content/config.json"
+        label: "Configuración Principal"
+        name: "config"
+        fields:
+          - {label: "Teléfono", name: "telefono", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Dirección", name: "direccion", widget: "string"}
+          - {label: "Horarios", name: "horarios", widget: "text"}
+          - {label: "Facebook URL", name: "facebook_url", widget: "string", required: false}
+          - {label: "Instagram URL", name: "instagram_url", widget: "string", required: false}
+          - {label: "Twitter URL", name: "twitter_url", widget: "string", required: false}
+
+  - name: "pages"
+    label: "Páginas del Sitio"
+    files:
+      - file: "content/pages/home.md"
+        label: "Página de Inicio"
+        name: "home"
+        fields:
+          - {label: "Título del Hero", name: "hero_title", widget: "string"}
+          - {label: "Subtítulo del Hero", name: "hero_subtitle", widget: "text"}
+          - {label: "Texto del botón", name: "hero_button_text", widget: "string"}
+          - {label: "Enlace del botón", name: "hero_button_link", widget: "string"}
+          - {label: "Imagen del Hero", name: "hero_image", widget: "image"}
+
+      - file: "content/pages/about.md"
+        label: "Quiénes Somos"
+        name: "about"
+        fields:
+          - {label: "Título de la sección", name: "section_title", widget: "string"}
+          - {label: "Contenido principal", name: "main_content", widget: "markdown"}
+          - {label: "Misión", name: "mission", widget: "text"}
+          - {label: "Visión", name: "vision", widget: "text"}
+          - {label: "Valores", name: "values", widget: "list", field: {label: "Valor", name: "value", widget: "string"}}
+
+  - name: "blog"
+    label: "Blog/Estudios"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Autor", name: "author", widget: "string"}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Estudio Bíblico", "Devocional", "Noticia", "Anuncio"]}
+      - {label: "Imagen destacada", name: "featured_image", widget: "image", required: false}
+      - {label: "Resumen", name: "excerpt", widget: "text"}
+      - {label: "Contenido", name: "body", widget: "markdown"}
+      - {label: "Publicado", name: "published", widget: "boolean", default: false}
