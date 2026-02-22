@@ -14,13 +14,28 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Ruta específica para config.yml ANTES de archivos estáticos
+// Rutas específicas ANTES de express.static
 app.get('/admin/config.yml', (req, res) => {
+  res.type('application/yaml; charset=utf-8');
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
   res.sendFile(path.join(__dirname, 'admin', 'config.yml'));
 });
 
-// Servir archivos estáticos desde el directorio raíz
-app.use(express.static(__dirname));
+// Servir archivos estáticos (excluir /admin/config.yml)
+app.use(express.static(__dirname, {
+  index: false, // Desabilitar servir index.html automáticamente
+}));
+
+// Servir admin/index.html solo para /admin/
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
+app.get('/admin/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
 
 // Rutas de OAuth
 app.get('/api/oauth/auth', (req, res) => {
@@ -113,7 +128,16 @@ app.get('/api/oauth/callback', async (req, res) => {
 });
 
 // Ruta catch-all para servir index.html en rutas no encontradas (SPA)
+// Pero NO para /admin/*
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('*', (req, res) => {
+  // No servir index.html para rutas de admin o api
+  if (req.path.startsWith('/admin') || req.path.startsWith('/api')) {
+    return res.status(404).send('Not found');
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
