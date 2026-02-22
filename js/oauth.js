@@ -14,6 +14,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Ruta específica para config.yml ANTES de archivos estáticos
+app.get('/admin/config.yml', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'config.yml'));
+});
+
 // Servir archivos estáticos desde el directorio raíz
 app.use(express.static(__dirname));
 
