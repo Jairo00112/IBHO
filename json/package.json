@@ -1,0 +1,19 @@
+{
+  "name": "iglesia-cms",
+  "version": "1.0.0",
+  "description": "Sitio web de iglesia con CMS usando Decap CMS y Railway",
+  "type": "module",
+  "main": "oauth.js",
+  "scripts": {
+    "start": "node oauth.js",
+    "build": "echo 'No build needed'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "cors": "^2.8.5"
+  },
+  "keywords": ["iglesia", "cms", "decap", "railway", "github"],
+  "author": "Tu Nombre",
+  "license": "MIT"
+}
