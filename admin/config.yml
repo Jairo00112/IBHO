@@ -114,3 +114,4 @@ collections:
       - {label: "Foto", name: "photo", widget: "image", required: false}
       - {label: "Fecha", name: "date", widget: "datetime", required: false}
       - {label: "Publicado", name: "published", widget: "boolean", default: true}
+
