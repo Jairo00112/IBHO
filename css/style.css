@@ -741,6 +741,44 @@ body.tab-focused *:focus {
   gap: var(--space-3xl);
   margin-top: var(--space-2xl);
 }
+.contact-info {
+  background-color: var(--color-white);
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.contact-info h3 {
+  font-size: var(--text-xl);
+  color: var(--color-dark);
+  margin-bottom: var(--space-lg);
+}
+.contact-info p {
+  font-size: var(--text-base);
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-md);
+}
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-gray-100);
+  border-radius: var(--border-radius-md);
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+.social-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
 .contact-form-wrapper h3,
 .contact-info-wrapper h3 {
   font-size: var(--text-xl);
@@ -886,6 +924,105 @@ body.tab-focused *:focus {
   box-shadow: var(--shadow-lg);
 }
 .btn-small { padding: var(--space-sm) var(--space-lg); font-size: var(--text-sm); }
+
+/* ===== DONACIONES ===== */
+.donaciones-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-2xl);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.donaciones-card h3 {
+  font-size: var(--text-2xl);
+  color: var(--color-dark);
+  margin-bottom: var(--space-lg);
+}
+.donaciones-card h3 i {
+  color: var(--color-primary);
+  margin-right: var(--space-sm);
+}
+.donaciones-card p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-lg);
+}
+.seguridad-text {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--space-lg);
+}
+.seguridad-text i {
+  color: var(--color-success);
+  margin-right: var(--space-xs);
+}
+
+/* ===== VIDEOS ===== */
+.videos-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-2xl);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.videos-card p {
+  font-size: var(--text-base);
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-lg);
+}
+.videos-card iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border-radius: var(--border-radius-md);
+}
+@media (max-width: 768px) {
+  .videos-card iframe {
+    height: 250px;
+  }
+}
+
+/* ===== VOLUNTARIADO ===== */
+.voluntariado-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-2xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.voluntariado-card h3 {
+  font-size: var(--text-2xl);
+  color: var(--color-dark);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+.voluntariado-card h3 i {
+  color: var(--color-primary);
+  margin-right: var(--space-sm);
+}
+.voluntariado-card .date-text {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+.voluntariado-card p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-lg);
+}
+.form-container {
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
 
 /* ===== FOOTER ===== */
 .footer {
@@ -1067,6 +1204,9 @@ body.tab-focused *:focus {
   .pillar-card,
   .info-card,
   .event-card,
+  .donaciones-card,
+  .videos-card,
+  .voluntariado-card,
   .contact-form { padding: var(--space-lg); }
   .schedule-card { padding: var(--space-lg); }
   .social-links { grid-template-columns: 1fr 1fr; }
