@@ -1,9 +1,8 @@
 backend:
   name: github
-  repo: Jairo00112/IBHO  # Cambia esto por tu usuario y repo de GitHub
+  repo: Jairo00112/IBHO
   branch: main
-  base_url: https://ibho.up.railway.app  # Cambia por tu dominio de Railway
-  auth_endpoint: /api/oauth/auth
+  base_url: https://sveltia-cms-auth.ibho.workers.dev
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
@@ -114,4 +113,3 @@ collections:
       - {label: "Foto", name: "photo", widget: "image", required: false}
       - {label: "Fecha", name: "date", widget: "datetime", required: false}
       - {label: "Publicado", name: "published", widget: "boolean", default: true}
-
