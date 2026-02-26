@@ -1,0 +1,232 @@
+backend:
+  name: github
+  repo: Jairo00112/IBHO
+  branch: main
+  base_url: https://sveltia-cms-auth.ibho.workers.dev
+
+media_folder: assets/images
+public_folder: /assets/images
+
+locale: es
+site_url: https://ibho.up.railway.app
+
+editor:
+  preview: true
+
+collections:
+  - name: configuracion
+    label: Configuración General
+    files:
+      - file: content/configuracion.json
+        label: Configuración Principal
+        name: configuracion
+        fields:
+          - label: Teléfono
+            name: telefono
+            widget: string
+          - label: Email
+            name: email
+            widget: string
+          - label: Dirección
+            name: direccion
+            widget: string
+          - label: Horarios
+            name: horarios
+            widget: text
+          - label: Facebook URL
+            name: facebook_url
+            widget: string
+            required: false
+          - label: Instagram URL
+            name: instagram_url
+            widget: string
+            required: false
+          - label: Twitter URL
+            name: twitter_url
+            widget: string
+            required: false
+
+  - name: historia
+    label: Historia de la Iglesia
+    files:
+      - file: content/historia.md
+        label: Historia
+        name: historia
+        fields:
+          - label: Título
+            name: title
+            widget: string
+          - label: Fecha
+            name: date
+            widget: datetime
+          - label: Contenido
+            name: body
+            widget: markdown
+
+  - name: estudios-biblicos
+    label: Estudios Bíblicos
+    folder: content/estudios-biblicos
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: Título
+        name: title
+        widget: string
+      - label: Fecha
+        name: date
+        widget: datetime
+      - label: Autor
+        name: author
+        widget: string
+        required: false
+      - label: Referencia Bíblica
+        name: bible_reference
+        widget: string
+        required: false
+      - label: Imagen destacada
+        name: featured_image
+        widget: image
+        required: false
+      - label: Resumen
+        name: excerpt
+        widget: text
+        required: false
+      - label: Contenido
+        name: body
+        widget: markdown
+
+  - name: ministerios
+    label: Ministerios
+    folder: content/ministerios
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Nombre del Ministerio
+        name: title
+        widget: string
+      - label: Descripción
+        name: description
+        widget: text
+      - label: Imagen
+        name: image
+        widget: image
+        required: false
+      - label: Líder
+        name: leader
+        widget: string
+        required: false
+      - label: Horario
+        name: schedule
+        widget: string
+        required: false
+      - label: Contacto
+        name: contact
+        widget: string
+        required: false
+      - label: Contenido detallado
+        name: body
+        widget: markdown
+        required: false
+
+  - name: eventos
+    label: Eventos
+    files:
+      - file: content/eventos.json
+        label: Lista de Eventos
+        name: eventos
+        fields:
+          - label: Eventos
+            name: eventos
+            widget: list
+            fields:
+              - label: Título
+                name: title
+                widget: string
+              - label: Fecha
+                name: date
+                widget: datetime
+              - label: Fecha de fin
+                name: end_date
+                widget: datetime
+                required: false
+              - label: Descripción
+                name: description
+                widget: text
+              - label: Ubicación
+                name: location
+                widget: string
+              - label: Imagen
+                name: image
+                widget: image
+                required: false
+              - label: Tipo
+                name: event_type
+                widget: select
+                options:
+                  - Culto
+                  - Conferencia
+                  - Reunión
+                  - Actividad Juvenil
+                  - Otro
+                required: false
+
+  - name: galeria
+    label: Galería
+    files:
+      - file: content/galeria.json
+        label: Lista de Imágenes
+        name: galeria
+        fields:
+          - label: Imágenes
+            name: imagenes
+            widget: list
+            fields:
+              - label: Título
+                name: title
+                widget: string
+              - label: Imagen
+                name: image
+                widget: image
+              - label: Descripción
+                name: description
+                widget: text
+                required: false
+              - label: Categoría
+                name: category
+                widget: select
+                options:
+                  - Cultos
+                  - Eventos
+                  - Ministerios
+                  - Comunidad
+                  - Otro
+                required: false
+              - label: Fecha
+                name: date
+                widget: datetime
+                required: false
+
+  - name: testimonios
+    label: Testimonios
+    folder: content/testimonios
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: Nombre
+        name: name
+        widget: string
+      - label: Testimonio
+        name: testimony
+        widget: text
+      - label: Foto
+        name: photo
+        widget: image
+        required: false
+      - label: Fecha
+        name: date
+        widget: datetime
+        required: false
+      - label: Publicado
+        name: published
+        widget: boolean
+        default: true
