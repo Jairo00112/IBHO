@@ -1,5 +1,5 @@
 ---
-title: "Nuestra Historia"
+title: Nuestra Historia
 date: 2024-01-01
 ---
 
