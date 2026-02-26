@@ -1,0 +1,14 @@
+{
+  "schedules": [
+    {
+      "day": "Domingo",
+      "time": "8:00 AM",
+      "activity": "Culto y Escuela Dominical"
+    },
+    {
+      "day": "Miércoles",
+      "time": "5:00 AM",
+      "activity": "Reunión de Oración"
+    }
+  ]
+}
