@@ -14,56 +14,273 @@ editor:
   preview: true
 
 collections:
-  - name: configuracion
-    label: Configuración General
+  # ===== CONFIGURACIÓN GLOBAL =====
+  - name: settings
+    label: Configuración del Sitio
     files:
-      - file: content/configuracion.json
-        label: Configuración Principal
-        name: configuracion
+      - file: content/settings.json
+        label: Configuración General
+        name: settings
         fields:
-          - label: Teléfono
-            name: telefono
+          - label: Nombre de la Iglesia
+            name: church_name
             widget: string
+            default: Iglesia Bautista Huerto de los Olivos
+          - label: Teléfono / WhatsApp
+            name: phone
+            widget: string
+            default: +57 315 662 0208
           - label: Email
             name: email
             widget: string
+            default: ibho2121@outlook.com
           - label: Dirección
-            name: direccion
+            name: address
             widget: string
-          - label: Horarios
-            name: horarios
+          - label: TikTok
+            name: tiktok
+            widget: string
+            default: "@g_ibho_14"
+          - label: Twitter
+            name: twitter
+            widget: string
+            default: "@ibho0856"
+          - label: Facebook
+            name: facebook
+            widget: string
+            default: "https://www.facebook.com/share/1DZo3cPURs"
+          - label: Instagram
+            name: instagram
+            widget: string
+            default: "@evangelismo_ibho"
+          - label: Sitio Web
+            name: website
+            widget: string
+            default: "https://ibho.up.railway.app"
+          - label: Cuenta Bancaria
+            name: bank_account
             widget: text
-          - label: Facebook URL
-            name: facebook_url
-            widget: string
-            required: false
-          - label: Instagram URL
-            name: instagram_url
-            widget: string
-            required: false
-          - label: Twitter URL
-            name: twitter_url
-            widget: string
-            required: false
+            default: "Banco BBVA Cta. Corriente N°348 012915 NIT 900.349.641-5"
 
-  - name: historia
-    label: Historia de la Iglesia
+  # ===== PÁGINA DE INICIO =====
+  - name: homepage
+    label: Página de Inicio
     files:
-      - file: content/historia.md
-        label: Historia
-        name: historia
+      - file: content/homepage.json
+        label: Hero y Contenido Principal
+        name: homepage
         fields:
-          - label: Título
-            name: title
+          - label: Título Hero
+            name: hero_title
             widget: string
-          - label: Fecha
-            name: date
-            widget: datetime
-          - label: Contenido
-            name: body
+            default: Bienvenidos a Iglesia Bautista Huerto De Los Olivos
+          - label: Subtítulo Hero
+            name: hero_subtitle
+            widget: string
+            default: Una familia de fe en el corazón de Barranquilla
+          - label: Descripción Hero
+            name: hero_description
+            widget: text
+            default: Comunidad cristiana evangélica que busca vivir el amor de Dios en cada área de la vida. Te esperamos con los brazos abiertos.
+          - label: Imagen de Fondo Hero
+            name: hero_image
+            widget: image
+            required: false
+          - label: Título Historia
+            name: history_title
+            widget: string
+            default: Nuestra Historia
+          - label: Contenido de Historia Parrafo 1
+            name: history_p1
+            widget: text
+          - label: Contenido de Historia Parrafo 2
+            name: history_p2
+            widget: text
+          - label: Contenido de Historia Parrafo 3
+            name: history_p3
+            widget: text
+          - label: Contenido de Historia Parrafo 4
+            name: history_p4
+            widget: text
+
+  # ===== HORARIOS =====
+  - name: schedules
+    label: Horarios de Servicios
+    files:
+      - file: content/horarios.json
+        label: Horarios de la Iglesia
+        name: schedules
+        fields:
+          - label: Horarios
+            name: schedules
+            widget: list
+            fields:
+              - label: Día
+                name: day
+                widget: string
+              - label: Hora
+                name: time
+                widget: string
+              - label: Actividad
+                name: activity
+                widget: string
+
+  # ===== QUIÉNES SOMOS =====
+  - name: quienes_somos
+    label: Quiénes Somos
+    files:
+      - file: content/quienes-somos.json
+        label: Contenido de Quiénes Somos
+        name: quienes_somos
+        fields:
+          - label: Introducción Bautistas
+            name: baptist_intro
+            widget: text
+          - label: Miembros Alianza Mundial Bautista
+            name: members_worldwide
+            widget: string
+            default: "47 Millones"
+          - label: Iglesias Bautistas Mundiales
+            name: churches_worldwide
+            widget: string
+            default: "50 Millones"
+          - label: Misión
+            name: mission
+            widget: markdown
+          - label: Visión
+            name: vision
+            widget: markdown
+          - label: Reflexión
+            name: reflection
             widget: markdown
 
-  - name: estudios-biblicos
+  # ===== QUÉ HACEMOS =====
+  - name: que_hacemos
+    label: Qué Hacemos
+    files:
+      - file: content/que-hacemos.json
+        label: Contenido de Qué Hacemos
+        name: que_hacemos
+        fields:
+          - label: Objetivo General
+            name: general_objective
+            widget: markdown
+          - label: Dónde Operamos
+            name: where_we_operate
+            widget: markdown
+          - label: Cómo Operamos
+            name: how_we_operate
+            widget: markdown
+          - label: Galería Descripción
+            name: gallery_description
+            widget: text
+
+  # ===== CÓMO VINCULARSE =====
+  - name: como_vincularse
+    label: Cómo Vincularse
+    files:
+      - file: content/como-vincularse.json
+        label: Contenido de Cómo Vincularse
+        name: como_vincularse
+        fields:
+          - label: Título Voluntariado
+            name: volunteering_title
+            widget: string
+            default: Únete a Nuestro Equipo
+          - label: Contenido Voluntariado
+            name: volunteering_content
+            widget: markdown
+          - label: Título Donaciones
+            name: donations_title
+            widget: string
+            default: Apoya Nuestra Misión
+          - label: Párrafo 1 Donaciones
+            name: donations_p1
+            widget: text
+          - label: Párrafo 2 Donaciones
+            name: donations_p2
+            widget: text
+
+  # ===== EVENTOS =====
+  - name: eventos
+    label: Eventos
+    files:
+      - file: content/eventos.json
+        label: Eventos de la Iglesia
+        name: eventos
+        fields:
+          - label: Eventos
+            name: eventos
+            widget: list
+            fields:
+              - label: Título del Evento
+                name: title
+                widget: string
+              - label: Fecha de Inicio
+                name: date
+                widget: datetime
+              - label: Fecha de Fin
+                name: end_date
+                widget: datetime
+                required: false
+              - label: Descripción
+                name: description
+                widget: markdown
+              - label: Ubicación
+                name: location
+                widget: string
+              - label: Imagen
+                name: image
+                widget: image
+                required: false
+              - label: Tipo de Evento
+                name: event_type
+                widget: select
+                options:
+                  - Culto
+                  - Conferencia
+                  - Reunión
+                  - Actividad Juvenil
+                  - Capacitación
+                  - Otro
+                required: false
+
+  # ===== MINISTERIOS =====
+  - name: ministerios
+    label: Ministerios
+    folder: content/ministerios
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Nombre del Ministerio
+        name: title
+        widget: string
+      - label: Descripción Corta
+        name: description
+        widget: text
+      - label: Contenido Detallado
+        name: body
+        widget: markdown
+        required: false
+      - label: Imagen
+        name: image
+        widget: image
+        required: false
+      - label: Líder del Ministerio
+        name: leader
+        widget: string
+        required: false
+      - label: Horario
+        name: schedule
+        widget: string
+        required: false
+      - label: Contacto
+        name: contact
+        widget: string
+        required: false
+
+  # ===== ESTUDIOS BÍBLICOS =====
+  - name: estudios_biblicos
     label: Estudios Bíblicos
     folder: content/estudios-biblicos
     create: true
@@ -83,7 +300,7 @@ collections:
         name: bible_reference
         widget: string
         required: false
-      - label: Imagen destacada
+      - label: Imagen Destacada
         name: featured_image
         widget: image
         required: false
@@ -91,121 +308,11 @@ collections:
         name: excerpt
         widget: text
         required: false
-      - label: Contenido
+      - label: Contenido Completo
         name: body
         widget: markdown
 
-  - name: ministerios
-    label: Ministerios
-    folder: content/ministerios
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - label: Nombre del Ministerio
-        name: title
-        widget: string
-      - label: Descripción
-        name: description
-        widget: text
-      - label: Imagen
-        name: image
-        widget: image
-        required: false
-      - label: Líder
-        name: leader
-        widget: string
-        required: false
-      - label: Horario
-        name: schedule
-        widget: string
-        required: false
-      - label: Contacto
-        name: contact
-        widget: string
-        required: false
-      - label: Contenido detallado
-        name: body
-        widget: markdown
-        required: false
-
-  - name: eventos
-    label: Eventos
-    files:
-      - file: content/eventos.json
-        label: Lista de Eventos
-        name: eventos
-        fields:
-          - label: Eventos
-            name: eventos
-            widget: list
-            fields:
-              - label: Título
-                name: title
-                widget: string
-              - label: Fecha
-                name: date
-                widget: datetime
-              - label: Fecha de fin
-                name: end_date
-                widget: datetime
-                required: false
-              - label: Descripción
-                name: description
-                widget: text
-              - label: Ubicación
-                name: location
-                widget: string
-              - label: Imagen
-                name: image
-                widget: image
-                required: false
-              - label: Tipo
-                name: event_type
-                widget: select
-                options:
-                  - Culto
-                  - Conferencia
-                  - Reunión
-                  - Actividad Juvenil
-                  - Otro
-                required: false
-
-  - name: galeria
-    label: Galería
-    files:
-      - file: content/galeria.json
-        label: Lista de Imágenes
-        name: galeria
-        fields:
-          - label: Imágenes
-            name: imagenes
-            widget: list
-            fields:
-              - label: Título
-                name: title
-                widget: string
-              - label: Imagen
-                name: image
-                widget: image
-              - label: Descripción
-                name: description
-                widget: text
-                required: false
-              - label: Categoría
-                name: category
-                widget: select
-                options:
-                  - Cultos
-                  - Eventos
-                  - Ministerios
-                  - Comunidad
-                  - Otro
-                required: false
-              - label: Fecha
-                name: date
-                widget: datetime
-                required: false
-
+  # ===== TESTIMONIOS =====
   - name: testimonios
     label: Testimonios
     folder: content/testimonios
@@ -217,12 +324,12 @@ collections:
         widget: string
       - label: Testimonio
         name: testimony
-        widget: text
+        widget: markdown
       - label: Foto
         name: photo
         widget: image
         required: false
-      - label: Fecha
+      - label: Fecha del Testimonio
         name: date
         widget: datetime
         required: false
@@ -230,3 +337,36 @@ collections:
         name: published
         widget: boolean
         default: true
+
+  # ===== GALERÍA =====
+  - name: galeria
+    label: Galería de Fotos
+    folder: content/galeria
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Título
+        name: title
+        widget: string
+      - label: Imagen
+        name: image
+        widget: image
+      - label: Descripción
+        name: description
+        widget: text
+        required: false
+      - label: Categoría
+        name: category
+        widget: select
+        options:
+          - Cultos
+          - Eventos
+          - Ministerios
+          - Comunidad
+          - Actividades
+          - Otro
+        required: false
+      - label: Fecha
+        name: date
+        widget: datetime
+        required: false
