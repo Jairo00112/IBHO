@@ -17,15 +17,6 @@
       "location": "Iglesia Bautista Huerto de los Olivos - Calle 46 #21-50, Barranquilla",
       "image": "assets/images/foto4.jpeg",
       "event_type": "Reunión"
-    },
-    {
-      "title": "Conferencia de Jóvenes 2026",
-      "date": "2026-03-15T19:00:00.000Z",
-      "end_date": "2026-03-17T22:00:00.000Z",
-      "description": "Una conferencia especial para jóvenes con temas de liderazgo, propósito de vida y fe en Cristo. Incluye dinámicas, predicaciones y espacios de confraternidad.",
-      "location": "Auditorio Principal - Calle 46 #21-50, Barranquilla",
-      "image": "assets/images/foto3.jpeg",
-      "event_type": "Conferencia"
     }
   ]
 }
