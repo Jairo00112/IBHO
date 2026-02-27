@@ -21,12 +21,16 @@
   if (hamburger) {
     hamburger.addEventListener('click', toggleMenu);
 
-    // Cerrar menú al hacer clic en un enlace
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
+    // Cerrar menú al hacer clic en un enlace (incluyendo dentro de dropdowns)
+    navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
+        // Cerrar todos los dropdowns
+        document.querySelectorAll('.dropdown-menu.active, .sub-dropdown-menu.active').forEach(menu => {
+          menu.classList.remove('active');
+        });
       });
     });
 
@@ -36,8 +40,13 @@
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.dropdown-menu.active, .sub-dropdown-menu.active').forEach(menu => {
+          menu.classList.remove('active');
+        });
       }
     });
+  }
+
   // ==========================================================================
   // 2. DROPDOWN MENUS EN MÓVIL
   // ==========================================================================
