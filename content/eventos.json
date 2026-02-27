@@ -6,7 +6,7 @@
       "end_date": "2026-03-01T10:00:00.000Z",
       "description": "Culto regular de la iglesia. Ven a compartir la Palabra de Dios con nuestra comunidad. Incluye escuela dominical y ministerio infantil.",
       "location": "Iglesia Bautista Huerto de los Olivos - Calle 46 #21-50, Barranquilla",
-      "image": "/assets/images/foto5.jpeg",
+      "image": "assets/images/foto5.jpeg",
       "event_type": "Culto"
     },
     {
@@ -15,7 +15,7 @@
       "end_date": "2026-02-28T18:30:00.000Z",
       "description": "Reunión semanal de oración. Un momento especial para presentar nuestras peticiones y alabanzas ante Dios.",
       "location": "Iglesia Bautista Huerto de los Olivos - Calle 46 #21-50, Barranquilla",
-      "image": "/assets/images/foto4.jpeg",
+      "image": "assets/images/foto4.jpeg",
       "event_type": "Reunión"
     },
     {
@@ -24,7 +24,7 @@
       "end_date": "2026-03-17T22:00:00.000Z",
       "description": "Una conferencia especial para jóvenes con temas de liderazgo, propósito de vida y fe en Cristo. Incluye dinámicas, predicaciones y espacios de confraternidad.",
       "location": "Auditorio Principal - Calle 46 #21-50, Barranquilla",
-      "image": "/assets/images/foto3.jpeg",
+      "image": "assets/images/foto3.jpeg",
       "event_type": "Conferencia"
     }
   ]
