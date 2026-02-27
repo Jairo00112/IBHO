@@ -114,6 +114,7 @@ class CMSLoader {
   async loadHomepage() {
     const homepage = await this.loadJSON('/content/homepage.json');
     const schedules = await this.loadJSON('/content/horarios.json');
+    const eventos = await this.loadJSON('/content/eventos.json');
 
     if (homepage) {
       // Hero
@@ -151,6 +152,50 @@ class CMSLoader {
         `).join('');
       }
     }
+
+    // Cargar eventos
+    if (eventos && eventos.eventos && eventos.eventos.length > 0) {
+      const eventosGrid = document.querySelector('.eventos-grid');
+      if (eventosGrid) {
+        eventosGrid.innerHTML = eventos.eventos.map(evento => {
+          const fechaInicio = new Date(evento.date);
+          const fechaFin = evento.end_date ? new Date(evento.end_date) : null;
+          const formatoFecha = this.formatearFecha(fechaInicio, fechaFin);
+          
+          return `
+            <article class="evento-card">
+              <div class="evento-image" style="background-image: url('${evento.image || '/assets/images/foto5.jpeg'}');">
+                <div class="evento-type-badge" data-type="${evento.event_type || 'Otro'}">${evento.event_type || 'Evento'}</div>
+              </div>
+              <div class="evento-content">
+                <div class="evento-date">
+                  <i class="fas fa-calendar-alt"></i> ${formatoFecha}
+                </div>
+                <h3>${evento.title}</h3>
+                <p class="evento-description">${evento.description || ''}</p>
+                <div class="evento-location">
+                  <i class="fas fa-map-marker-alt"></i> ${evento.location || 'Por confirmar'}
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+    }
+  }
+
+  /**
+   * Formatear fecha para mostrar
+   */
+  formatearFecha(fechaInicio, fechaFin) {
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const inicio = fechaInicio.toLocaleDateString('es-ES', opciones);
+    
+    if (fechaFin && fechaInicio.getTime() !== fechaFin.getTime()) {
+      const fin = fechaFin.toLocaleDateString('es-ES', opciones);
+      return `${inicio} - ${fin}`;
+    }
+    return inicio;
   }
 
   /**
