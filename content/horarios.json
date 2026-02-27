@@ -7,8 +7,13 @@
     },
     {
       "day": "Miércoles",
-      "time": "5:00 AM",
+      "time": "5:00 PM",
       "activity": "Reunión de Oración"
+    },
+    {
+      "day": "Sábado",
+      "time": "5:00 PM",
+      "activity": "Sede Los Girasoles (CFJ)"
     }
   ]
 }
