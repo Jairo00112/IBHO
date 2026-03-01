@@ -1,22 +1,22 @@
 {
   "eventos": [
     {
-      "title": "Culto Dominical",
-      "date": "2026-03-01T08:00:00.000Z",
-      "end_date": "2026-03-01T10:00:00.000Z",
+      "title": "Culto y Escuela Dominical",
+      "date": "2026-03-01T08:00:00",
+      "end_date": "2026-03-01T11:00:00",
       "description": "Culto regular de la iglesia. Ven a compartir la Palabra de Dios con nuestra comunidad. Incluye escuela dominical y ministerio infantil.",
       "location": "Iglesia Bautista Huerto de los Olivos - Calle 46 #21-50, Barranquilla",
       "image": "assets/images/foto5.jpeg",
       "event_type": "Culto"
     },
     {
-      "title": "Reunión de Oración",
-      "date": "2026-02-28T17:00:00.000Z",
-      "end_date": "2026-02-28T18:30:00.000Z",
+      "title": "Culto Juvenil",
+      "date": "2026-03-07T18:00:00",
+      "end_date": "2026-03-07T20:00:00",
       "description": "Reunión semanal de oración. Un momento especial para presentar nuestras peticiones y alabanzas ante Dios.",
-      "location": "Iglesia Bautista Huerto de los Olivos - Calle 46 #21-50, Barranquilla",
-      "image": "assets/images/foto4.jpeg",
-      "event_type": "Reunión"
+      "location": "Casa de la Sra Lourdes - Calle 46D #10A - 47, Barranquilla",
+      "image": "/assets/images/foto4.jpeg",
+      "event_type": "Actividad Juvenil"
     }
   ]
 }
