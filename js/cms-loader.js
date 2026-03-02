@@ -246,6 +246,7 @@ class CMSLoader {
    */
   async loadQueHacemos() {
     const content = await this.loadJSON('/content/que-hacemos.json');
+    const gallery = await this.loadJSON('/content/galeria.json');
 
     if (content) {
       // Objetivo General
@@ -273,9 +274,38 @@ class CMSLoader {
       const gallerySection = document.querySelector('#galeria-fotos');
       if (gallerySection) {
         const p = gallerySection.querySelector('p:first-of-type');
-        if (p) p.textContent = content.gallery_description;
+        if (p && gallery) p.textContent = gallery.description;
       }
     }
+
+    // Cargar imágenes de la galería dinámicamente
+    this.loadGalleryImages(gallery);
+  }
+
+  /**
+   * Cargar imágenes de la galería desde JSON
+   */
+  loadGalleryImages(gallery) {
+    if (!gallery || !gallery.imagenes) return;
+
+    const galleryGrid = document.querySelector('.gallery-grid');
+    if (!galleryGrid) return;
+
+    // Limpiar galería existente
+    galleryGrid.innerHTML = '';
+
+    // Agregar cada imagen
+    gallery.imagenes.forEach((image) => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = image.image;
+      img.alt = image.title || image.description;
+      
+      galleryItem.appendChild(img);
+      galleryGrid.appendChild(galleryItem);
+    });
   }
 
   /**
