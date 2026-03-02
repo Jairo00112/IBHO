@@ -210,7 +210,7 @@
       if (direccionElement) direccionElement.textContent = config.direccion;
       
     } catch (error) {
-      console.log('CMS data not available, using defaults');
+      console.warn('CMS data not available, using defaults');
     }
   }
 

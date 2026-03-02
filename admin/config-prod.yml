@@ -3,7 +3,7 @@ backend:
   branch: main
 
 media_folder: "assets/images"
-public_folder: "/assets/images"
+public_folder: "assets/images"
 
 locale: 'es'
 site_url: https://ibho.example.com

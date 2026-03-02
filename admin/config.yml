@@ -5,7 +5,7 @@ backend:
   base_url: https://sveltia-cms-auth.ibho.workers.dev
 
 media_folder: assets/images
-public_folder: /assets/images
+public_folder: assets/images
 
 locale: es
 site_url: https://ibho.up.railway.app

@@ -38,7 +38,7 @@ class CMSLoader {
    * Cargar configuración global del sitio
    */
   async loadSettings() {
-    const settings = await this.loadJSON('/content/settings.json');
+    const settings = await this.loadJSON('content/settings.json');
     if (settings) {
       this.contentCache.settings = settings;
       this.applyGlobalSettings(settings);
@@ -112,9 +112,9 @@ class CMSLoader {
    * Cargar contenido de página de inicio
    */
   async loadHomepage() {
-    const homepage = await this.loadJSON('/content/homepage.json');
-    const schedules = await this.loadJSON('/content/horarios.json');
-    const eventos = await this.loadJSON('/content/eventos.json');
+    const homepage = await this.loadJSON('content/homepage.json');
+    const schedules = await this.loadJSON('content/horarios.json');
+    const eventos = await this.loadJSON('content/eventos.json');
 
     if (homepage) {
       // Hero
@@ -202,7 +202,7 @@ class CMSLoader {
    * Cargar contenido de Quiénes Somos
    */
   async loadQuienesSomos() {
-    const content = await this.loadJSON('/content/quienes-somos.json');
+    const content = await this.loadJSON('content/quienes-somos.json');
 
     if (content) {
       // Introducción
@@ -245,8 +245,8 @@ class CMSLoader {
    * Cargar contenido de Qué Hacemos
    */
   async loadQueHacemos() {
-    const content = await this.loadJSON('/content/que-hacemos.json');
-    const gallery = await this.loadJSON('/content/galeria.json');
+    const content = await this.loadJSON('content/que-hacemos.json');
+    const gallery = await this.loadJSON('content/galeria.json');
 
     if (content) {
       // Objetivo General
@@ -312,7 +312,7 @@ class CMSLoader {
    * Cargar contenido de Cómo Vincularse
    */
   async loadComoVincularse() {
-    const content = await this.loadJSON('/content/como-vincularse.json');
+    const content = await this.loadJSON('content/como-vincularse.json');
 
     if (content) {
       // Voluntariado
@@ -340,7 +340,7 @@ class CMSLoader {
    * Cargar contenido Contáctanos
    */
   async loadContactanos() {
-    const settings = this.contentCache.settings || await this.loadJSON('/content/settings.json');
+    const settings = this.contentCache.settings || await this.loadJSON('content/settings.json');
 
     if (settings) {
       const contactInfo = document.querySelectorAll('.contact-info');
