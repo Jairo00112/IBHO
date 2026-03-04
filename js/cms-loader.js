@@ -300,12 +300,40 @@ class CMSLoader {
       galleryItem.className = 'gallery-item';
       
       const img = document.createElement('img');
-      img.src = image.image;
+      img.dataset.src = image.image;
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Placeholder transparente
       img.alt = image.title || image.description;
       
       galleryItem.appendChild(img);
       galleryGrid.appendChild(galleryItem);
     });
+
+    // Aplicar lazy loading a las imágenes dinámicamente creadas
+    this.observeImagesForLazyLoading();
+  }
+
+  /**
+   * Observar imágenes para lazy loading dinámico
+   */
+  observeImagesForLazyLoading() {
+    if ('IntersectionObserver' in window) {
+      const imgObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            imgObserver.unobserve(img);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.gallery-item img[data-src]').forEach(img => {
+        imgObserver.observe(img);
+      });
+    }
   }
 
   /**
