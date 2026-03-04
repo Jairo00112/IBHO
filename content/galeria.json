@@ -4,70 +4,70 @@
     {
       "id": 1,
       "title": "Evento 1",
-      "image": "assets/images/evento1.jpg",
+      "image": "/assets/images/evento1.jpg",
       "description": "Momentos especiales de nuestra comunidad",
       "category": "Eventos"
     },
     {
       "id": 2,
       "title": "Evento 2",
-      "image": "assets/images/evento2.jpg",
+      "image": "/assets/images/evento2.jpg",
       "description": "Adoración y fe en acción",
       "category": "Eventos"
     },
     {
       "id": 3,
       "title": "Evento 3",
-      "image": "assets/images/evento3.jpg",
+      "image": "/assets/images/evento3.jpg",
       "description": "Comunidad reunida en servicio",
       "category": "Eventos"
     },
     {
       "id": 4,
       "title": "Evento 4",
-      "image": "assets/images/evento4.jpg",
+      "image": "/assets/images/evento4.jpg",
       "description": "Ministerio en acción",
       "category": "Eventos"
     },
     {
       "id": 5,
       "title": "Evento 5",
-      "image": "assets/images/evento5.jpg",
+      "image": "/assets/images/evento5.jpg",
       "description": "Encuentros de fe",
       "category": "Eventos"
     },
     {
       "id": 6,
       "title": "Evento 6",
-      "image": "assets/images/evento6.jpg",
+      "image": "/assets/images/evento6.jpg",
       "description": "Momentos de gloria",
       "category": "Eventos"
     },
     {
       "id": 7,
       "title": "Evento 7",
-      "image": "assets/images/evento7.jpg",
+      "image": "/assets/images/evento7.jpg",
       "description": "Celebración comunitaria",
       "category": "Eventos"
     },
     {
       "id": 8,
       "title": "Evento 8",
-      "image": "assets/images/evento8.jpg",
+      "image": "/assets/images/evento8.jpg",
       "description": "Unidos en propósito",
       "category": "Eventos"
     },
     {
       "id": 9,
       "title": "Evento 9",
-      "image": "assets/images/evento9.jpg",
+      "image": "/assets/images/evento9.jpg",
       "description": "Testimonio de fe",
       "category": "Eventos"
     },
     {
       "id": 10,
       "title": "Evento 10",
-      "image": "assets/images/evento10.jpg",
+      "image": "/assets/images/evento10.jpg",
       "description": "Impacto en la comunidad",
       "category": "Eventos"
     }
