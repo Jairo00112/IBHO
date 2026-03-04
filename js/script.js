@@ -21,16 +21,24 @@
   if (hamburger) {
     hamburger.addEventListener('click', toggleMenu);
 
-    // Cerrar menú al hacer clic en un enlace (incluyendo dentro de dropdowns)
+    // Cerrar menú al hacer clic en un enlace real (no dropdown)
     navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        // Cerrar todos los dropdowns
-        document.querySelectorAll('.dropdown-menu.active, .sub-dropdown-menu.active').forEach(menu => {
-          menu.classList.remove('active');
-        });
+      link.addEventListener('click', (e) => {
+        // Verificar si es un dropdown (tiene un hermano dropdown-menu/sub-dropdown-menu)
+        const isDropdownTrigger = link.nextElementSibling && 
+          (link.nextElementSibling.classList.contains('dropdown-menu') || 
+           link.nextElementSibling.classList.contains('sub-dropdown-menu'));
+        
+        // Solo cerrar menú si NO es un dropdown, o si es un dropdown pero ya está abierto
+        if (!isDropdownTrigger) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          // Cerrar todos los dropdowns
+          document.querySelectorAll('.dropdown-menu.active, .sub-dropdown-menu.active').forEach(menu => {
+            menu.classList.remove('active');
+          });
+        }
       });
     });
 

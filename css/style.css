@@ -1227,9 +1227,12 @@ body.tab-focused *:focus {
   }
 }
 @media (max-width: 768px) {
+  main {
+    margin-top: 80px;
+  }
   .hamburger { display: flex; }
   .nav-menu {
-    position: absolute;
+    position: fixed;
     top: 80px;
     left: -100%;
     flex-direction: column;
@@ -1241,6 +1244,8 @@ body.tab-focused *:focus {
     padding: var(--space-2xl) 0;
     gap: var(--space-lg);
     z-index: 999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
   }
   .nav-menu.active { left: 0; }
   .nav-link { display: block; padding: var(--space-md) 0; }
