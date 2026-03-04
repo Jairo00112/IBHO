@@ -11,10 +11,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware básico
 app.use(cors());
 app.use(express.json());
 
+// ==================== ARCHIVOS ESTÁTICOS (PRIORITARIO) ====================
 // Servir carpeta assets de forma explícita (imágenes, CSS, etc.)
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {
   maxAge: '1d',
@@ -38,7 +39,15 @@ app.use('/content', express.static(path.join(__dirname, 'content'), {
   etag: false
 }));
 
-// Rutas específicas ANTES de express.static
+// Servir archivos HTML individuales y otros estáticos desde raíz
+app.use(express.static(__dirname, {
+  index: false,
+  dotfiles: 'deny',
+  extensions: ['html', 'htm']
+}));
+
+// ==================== RUTAS API Y ESPECÍFICAS ====================
+// Admin config YAML
 app.get('/admin/config.yml', (req, res) => {
   res.type('application/yaml; charset=utf-8');
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -47,13 +56,7 @@ app.get('/admin/config.yml', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'config.yml'));
 });
 
-// Servir otros archivos estáticos (HTML, etc)
-app.use(express.static(__dirname, {
-  index: false,
-  dotfiles: 'deny'
-}));
-
-// Servir admin/index.html solo para /admin/
+// Admin páginas
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
 });
@@ -62,7 +65,24 @@ app.get('/admin/', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
 });
 
-// Rutas de OAuth
+// Debug endpoint
+app.get('/debug/assets', (req, res) => {
+  const assetsPath = path.join(__dirname, 'assets', 'images');
+  try {
+    const files = fs.readdirSync(assetsPath);
+    res.json({ 
+      assetsPath,
+      files,
+      __dirname,
+      existsAssetsDir: fs.existsSync(path.join(__dirname, 'assets')),
+      existsImagesDir: fs.existsSync(assetsPath)
+    });
+  } catch (error) {
+    res.json({ error: error.message, __dirname });
+  }
+});
+
+// OAuth routes
 app.get('/api/oauth/auth', (req, res) => {
   const clientId = process.env.GITHUB_CLIENT_ID;
   const redirectUri = process.env.REDIRECT_URI || `https://${req.headers.host}/api/oauth/callback`;
@@ -152,37 +172,17 @@ app.get('/api/oauth/callback', async (req, res) => {
   }
 });
 
-// Ruta catch-all para servir index.html en rutas no encontradas (SPA)
-// Pero NO para /admin/*
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Endpoint de debug para verificar archivos disponibles
-app.get('/debug/assets', (req, res) => {
-  const assetsPath = path.join(__dirname, 'assets', 'images');
-  try {
-    const files = fs.readdirSync(assetsPath);
-    res.json({ 
-      assetsPath,
-      files,
-      __dirname,
-      existsAssetsDir: fs.existsSync(path.join(__dirname, 'assets')),
-      existsImagesDir: fs.existsSync(assetsPath)
-    });
-  } catch (error) {
-    res.json({ error: error.message, __dirname });
-  }
-});
-
+// ==================== RUTA CATCH-ALL PARA SPA (ÚLTIMA) ====================
+// Servir index.html para rutas no encontradas (excepto API y admin)
 app.get('*', (req, res) => {
-  // No servir index.html para rutas de admin o api
-  if (req.path.startsWith('/admin') || req.path.startsWith('/api') || req.path.startsWith('/debug')) {
+  // No servir index.html para rutas de API, admin o debug
+  if (req.path.startsWith('/api') || req.path.startsWith('/admin') || req.path.startsWith('/debug')) {
     return res.status(404).send('Not found');
   }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// ==================== INICIAR SERVIDOR ====================
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });
