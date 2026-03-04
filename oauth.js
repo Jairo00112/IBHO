@@ -2,6 +2,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +15,29 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Servir carpeta assets de forma explícita (imágenes, CSS, etc.)
+app.use('/assets', express.static(path.join(__dirname, 'assets'), {
+  maxAge: '1d',
+  etag: false
+}));
+
+// Servir CSS y JS de forma explícita
+app.use('/css', express.static(path.join(__dirname, 'css'), {
+  maxAge: '1d',
+  etag: false
+}));
+
+app.use('/js', express.static(path.join(__dirname, 'js'), {
+  maxAge: '1d',
+  etag: false
+}));
+
+// Servir contenido JSON de forma explícita
+app.use('/content', express.static(path.join(__dirname, 'content'), {
+  maxAge: '1d',
+  etag: false
+}));
+
 // Rutas específicas ANTES de express.static
 app.get('/admin/config.yml', (req, res) => {
   res.type('application/yaml; charset=utf-8');
@@ -23,9 +47,10 @@ app.get('/admin/config.yml', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'config.yml'));
 });
 
-// Servir archivos estáticos (excluir /admin/config.yml)
+// Servir otros archivos estáticos (HTML, etc)
 app.use(express.static(__dirname, {
-  index: false, // Desabilitar servir index.html automáticamente
+  index: false,
+  dotfiles: 'deny'
 }));
 
 // Servir admin/index.html solo para /admin/
@@ -133,9 +158,26 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Endpoint de debug para verificar archivos disponibles
+app.get('/debug/assets', (req, res) => {
+  const assetsPath = path.join(__dirname, 'assets', 'images');
+  try {
+    const files = fs.readdirSync(assetsPath);
+    res.json({ 
+      assetsPath,
+      files,
+      __dirname,
+      existsAssetsDir: fs.existsSync(path.join(__dirname, 'assets')),
+      existsImagesDir: fs.existsSync(assetsPath)
+    });
+  } catch (error) {
+    res.json({ error: error.message, __dirname });
+  }
+});
+
 app.get('*', (req, res) => {
   // No servir index.html para rutas de admin o api
-  if (req.path.startsWith('/admin') || req.path.startsWith('/api')) {
+  if (req.path.startsWith('/admin') || req.path.startsWith('/api') || req.path.startsWith('/debug')) {
     return res.status(404).send('Not found');
   }
   res.sendFile(path.join(__dirname, 'index.html'));
