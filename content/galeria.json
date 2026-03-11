@@ -70,6 +70,13 @@
       "image": "/assets/images/evento10.jpg",
       "description": "Impacto en la comunidad",
       "category": "Eventos"
+    },
+    {
+      "id": 11,
+      "title": "Evento 11",
+      "image": "/assets/images/evento11.jpeg",
+      "description": "Momentos de bendición",
+      "category": "Eventos"
     }
   ]
 }
